@@ -48,3 +48,8 @@ h3{
 .reject{
   background-color: #C21A01;
 }
+#spinner{
+  line-height: 26px;
+  vertical-align: middle;
+  display: none;
+}

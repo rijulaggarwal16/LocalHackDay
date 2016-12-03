@@ -27,6 +27,7 @@
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="getSuggestions();">
           Get Suggestions
         </button>
+        <div class="mdl-spinner mdl-js-spinner is-active" id="spinner"></div>
       </div>
     </div>
     <h3 class="text-center">Outgoing</h3>
@@ -48,13 +49,26 @@
       </span>
       <img src="images/car_ad004.jpg" width="100%" />
     </div>
+    <div id="#listSuggestions"></div>
     <div class="clear"></div>
   </div>
   <script>
     function getSuggestions(){
       var id = $('#screenName').val();
+      $('#listSuggestions').html('');
+      $('#spinner').show();
       $.post("/tweets", function(data){
-
+        var html = '<div class="suggestion left">\
+                      <span class="mdl-chip accept">\
+                        <span class="mdl-chip__text">Powerful</span>\
+                      </span>\
+                      <span class="mdl-chip accept">\
+                        <span class="mdl-chip__text">Traditional</span>\
+                      </span>\
+                      <img src="images/car_ad001.jpg" width="100%" />\
+                    </div>';
+        $('#listSuggestions').append(html);
+        $('#spinner').hide();
       });
     }
   </script>

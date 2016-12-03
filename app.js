@@ -281,6 +281,10 @@ app.post('/tweets', function(req, res) {
             
             var return_obj = {sugg: sugg, traits_list:traits_list, tags:tags}
 
+            connection.end(function(err) {
+              
+            });
+
             console.log(return_obj);
 
             res.send(return_obj)

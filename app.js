@@ -72,6 +72,7 @@ app.get('/twitter', function(req, res) {
 app.post('/tweets', function(req, res) {
   var body = req.body;
   var screen_name = body.screen_name;
+  console.log(screen_name);
 
   var options = {count: 100, screen_name: screen_name};
   var results = [];

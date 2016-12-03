@@ -57,19 +57,26 @@
       var id = $('#screenName').val();
       $('#listSuggestions').html('');
       $('#spinner').show();
-      $.post("/tweets", {screen_name: '"'+id+'"'}, function(data){
-        var html = '<div class="suggestion left">\
-                      <span class="mdl-chip accept">\
-                        <span class="mdl-chip__text">Powerful</span>\
-                      </span>\
-                      <span class="mdl-chip accept">\
-                        <span class="mdl-chip__text">Traditional</span>\
-                      </span>\
-                      <img src="images/'+data.sugg+'" width="100%" />\
-                    </div>';
-        $('#listSuggestions').append(html);
-        $('#spinner').hide();
-      });
+      $.ajax(
+        {
+          type: "POST", 
+          url: "/tweets", 
+          data: {screen_name: id},
+          success: function(data){
+            var html = '<div class="suggestion left">\
+                          <span class="mdl-chip accept">\
+                            <span class="mdl-chip__text">Powerful</span>\
+                          </span>\
+                          <span class="mdl-chip accept">\
+                            <span class="mdl-chip__text">Traditional</span>\
+                          </span>\
+                          <img src="images/'+data.sugg+'" width="100%" />\
+                        </div>';
+            $('#listSuggestions').append(html);
+            $('#spinner').hide();
+          }
+        }
+      );
     });
   </script>
 </body>

@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: Person Adds
+  host: Person-Adds
+  disk_quota: 1024M
+  services:
+  - Person Adds-personality_insights

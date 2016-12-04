@@ -30,7 +30,9 @@
         <div class="mdl-spinner mdl-js-spinner is-active" id="spinner"></div>
       </div>
     </div>
-    <h3 class="text-center">Outgoing</h3>
+    
+    <div id="listSuggestions">
+      <h3 class="text-center">Outgoing</h3>
     <div class="suggestion left">
       <span class="mdl-chip accept">
         <span class="mdl-chip__text">Powerful</span>
@@ -49,7 +51,7 @@
       </span>
       <img src="images/car_ad004.jpg" width="100%" />
     </div>
-    <div id="#listSuggestions"></div>
+    </div>
     <div class="clear"></div>
   </div>
   <script>
@@ -63,14 +65,19 @@
           url: "/tweets", 
           data: {screen_name: id},
           success: function(data){
-            var html = '<div class="suggestion left">\
-                          <span class="mdl-chip accept">\
-                            <span class="mdl-chip__text">Powerful</span>\
-                          </span>\
-                          <span class="mdl-chip accept">\
-                            <span class="mdl-chip__text">Traditional</span>\
-                          </span>\
-                          <img src="images/'+data.sugg+'" width="100%" />\
+            var html = '<h3 class="text-center">';
+            var traits = '';
+            for(var i=0; i<data.traits_list.length;i++){
+              traits += data.traits_list[i]+',';
+            }
+            html += traits+'</h3><div class="suggestion left">';
+            
+            for(var i=0; i<data.tags.length; i++){
+              html += '<span class="mdl-chip accept">\
+                            <span class="mdl-chip__text">'+data.tags[i]+'</span>\
+                          </span>';
+            }              
+            html += '<img src="images/'+data.sugg+'" width="100%" />\
                         </div>';
             $('#listSuggestions').append(html);
             $('#spinner').hide();
